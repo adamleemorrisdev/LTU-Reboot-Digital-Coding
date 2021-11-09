@@ -1,3 +1,20 @@
-body {
-    background-color: burlywood;
+header .logo {
+    max-width: 200px;
+    display: block;
+    margin: auto;  
+}
+
+section.userInterface {
+    padding: 0px;
+}
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
