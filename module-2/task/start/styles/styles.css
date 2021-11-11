@@ -15,7 +15,14 @@ header {
 
 header ol {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 380px;
 
+}
+
+.logo {
+    display: flex;
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
 }
