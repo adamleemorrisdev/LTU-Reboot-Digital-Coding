@@ -50,4 +50,102 @@ function calculateDiscount(){
     }
     console.log(sum);
 }
-calculateDiscount();        
+calculateDiscount();         
+
+// Task 8 18 November 2021 --- Switch statements
+
+// Create a function called DrinkOrder that takes 2 parameters
+// {Size} and {drink}
+    // VALIDATE the variables passed through
+    // SWITCH {drink}
+        // depending on the drink required
+        // change the message to be output
+    // IF ELSE {size}
+        // depending on the drink required, change the
+        // message to the output
+
+    // RETURN message
+
+
+
+    function drinkOrder(size, drink) {
+        if(size != 'small' && size != 'medium' && size != 'large'){
+            console.log('You have ordered a size we don\'t sell');
+            return; // can only execute if these conditions aren't true ** return instructs the function to close immediately
+        }
+        let message = 'You have ordered a ' + size;
+        
+        switch(drink) {
+            case 'cola':
+                message += ' Coca-Cola'; // += appending to the end of a string
+                break;
+            case 'lemon':
+                message += ' Schwepps';
+                break;
+            case 'orange': 
+                message += ' Tango';
+                break;
+            default:
+                message = 'You have ordered a drink we don\'t sell';
+                break;
+        }
+        console.log(message);
+    }
+drinkOrder('grande');
+drinkOrder('small','cola');
+drinkOrder('medium','orange');
+drinkOrder('large','lemon');
+drinkOrder('small','coffee');
+
+// Task 9 - Create a calculator
+
+// FUNCTION calculator {num1} {num 2} {operator}
+function calculator(num1, num2, operator) {
+    // VALIDATE all data
+    if(isNaNValidator(num1)) {
+        console.log('Number 1 is not a number')
+        return;
+    }
+    if(isNaNValidator(num2)) {
+        console.log('Number 2 is not a number');
+        return;
+    }
+    // SWITCH {operator}
+    let sum; 
+    switch(operator) {
+        case '+':
+            sum = num1 + num2;
+            break;
+        case '-':
+            sum = num1 - num2;
+            break;
+        case '/':
+            sum = num1 / num2;
+            break;
+        case '*':
+            sum = num1 * num2;
+            break;
+        case '%':
+            sum = num1 % num2;
+            break;
+        default:
+            console.log('Operator is not recognised');
+            return;
+        }
+        // based on the operator passed do maths
+    // RETURN sum
+    return sum;
+}
+
+function isNaNValidator(number) {
+    return isNaN(number);
+}
+
+calculator(1);
+calculator('adam');
+calculator(1, 1, 'alex');
+console.log(calculator(2,10,'+'));
+console.log(calculator(2,10,'-'));
+console.log(calculator(2,10,'/'));
+console.log(calculator(2,10,'*'));
+console.log(calculator(2,10,'%'));
