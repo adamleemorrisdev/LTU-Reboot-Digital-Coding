@@ -1,0 +1,131 @@
+html {
+    font-size: 0.75rem;
+}
+body {
+	font-family: Georgia, serif;
+	background: none;
+	color: black;
+}
+a {
+    text-decoration-thickness: 2px;
+    text-decoration-color: black;
+}
+.content-type.banner {
+    --spacing: 1rem !important;
+    max-height: 400px !important;
+}
+.content-type.tabbed {
+    padding-top: 0 !important;
+}
+.banner .carousel:before {
+    background-color: #ffffff;
+}
+.banner .carousel {
+    color: #000000;
+}
+img {
+    text-align: left !important;
+}
+.banner .image-overlay>img, .banner .image-overlay>picture, .banner .image-overlay>picture img {
+    max-width: 300px;
+    max-height: 400px;
+    margin: 0;
+}
+.h-group {
+    margin-left: 280px;
+}
+#utility, footer, .header, #heroCTA,
+.summary__aside, #v_ki--overview .button,
+.content-type.unistats  {
+	display: none !important;
+}
+.GeckoChatWidget,
+.ChatButton-custom,
+.GeckoChatWidget .ChatButton-custom-icon-open,
+.GeckoChatWidget .ChatButton-custom-icon-open.active,
+.GeckoChatWidget .ChatButton-custom-icon-open.not-active {
+    display: none !important;
+}
+
+.banner .image-overlay h1#course-title {
+    font-size: 3rem !important;
+    text-shadow: none !important;
+}
+@media (min-width: 1280px) {   
+    .banner .image-overlay h1#course-title {
+        font-size: 3rem !important;
+    }
+}
+h1, h2, h3, h4, h5 {
+    display: block !important;
+    font-size: 95%;;
+}
+.summary__main {
+    flex-basis: 100%;
+}
+@media (min-width: 1280px) {
+    .summary__main {
+        flex-basis: 100%;
+    }
+}
+@media (min-width: 1024px) {
+    .summary__main {
+        flex-basis: 100%;
+    }
+}
+
+#course--summary.content-type {
+    padding-top: 0 !important;
+}
+@media (min-width: 1280px) {
+    #course--summary.content-type {
+        padding-top: 0 !important;
+    }
+}
+@media (min-width: 1024px) {
+    #course--summary.content-type {
+        padding-top: 0 !important;
+    }
+}
+.content-type {
+    padding: 3rem 0 !important;
+}
+.tabbed {
+    page-break-before: always;
+}
+.tab {
+    display: block !important;
+}
+@media (min-width: 1024px) {
+    .tab {
+        display: block !important;
+    }
+}
+.tab__bar ul {
+    display: none;
+}
+.tab__content {
+    display: block !important;
+}
+.page-inner h2.tab__title {
+    text-align: left;
+    margin: 0 !important;
+}
+.shape--pink, .shape--navy, .shape--green,
+.shape--blue-l,.shape--blue-d, .shape--yellow,
+.slope--left, .slope--right, .pinch--right, .pinch--left, .slope--left,
+.slope--right, .pinch--right, .pinch--left, .slope--left, .slope--right, 
+.pinch--right, .pinch--left {
+    background-color: #ffffff !important;
+    border-left: 4px solid #000000 !important;
+    color: #000000 !important;
+}
+.slope--left h2, .slope--right h2, .pinch--right h2, .pinch--left h2, .slope--left h3,
+.slope--right h3, .pinch--right h3, .pinch--left h3, .slope--left h4, .slope--right h4, 
+.pinch--right h4, .pinch--left h4 {
+    margin-top: 0 !important;
+    color: #000000 !important;
+}
+.general-shapes .h-group {
+    margin: 0 !important;
+}
