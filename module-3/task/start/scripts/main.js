@@ -18,6 +18,13 @@ let productDiscountAmount = 2;
 // console.log(inStock);
 // console.log(discountAmount);
 
+function multiplyByTwo(number) {
+    let sum = number * 2;
+    console.log(sum);
+}
+
+multiplyByTwo(2);
+
 function showProductName(){
     console.log(productName);
 }
@@ -30,7 +37,7 @@ function totalPrice(productPrice=0,productQuantity=0){
     console.log(totalProductPrice);
 }
 
-// totalPrice(price,quantity);
+totalPrice(productPrice,productQuantity);
 
 //showing the difference between a regular function and an arrow function
 function squareNumber(number=0){
@@ -49,26 +56,27 @@ let squared = square(3);
 
 function productDiscount(){
     let sum;
-    if(quantity > 1){
-        sum = price * quantity;
-        let discount = discountAmount * quantity;
+    if(productQuantity > 1){
+        sum = productPrice * productQuantity;
+        let discount = productDiscountAmount * productQuantity;
         sum = sum - discount;
     } else {
-        sum = price * quantity;
+        sum = productPrice * productQuantity;
     }
     console.log(sum);
 }
 
-// productDiscount();
+productDiscount();
 
 function calculateDiscount(){
-    let sum = price * quantity;
-    if(quantity > 1){
-        let discount = discountAmount * quantity;
-        sum = sum - discount;
+    let sum = productPrice * productQuantity;
+    if(productQuantity > 1){
+        sum = sum - productDiscountAmount;
     }
     console.log(sum);
 }
+
+calculateDiscount();
 
 //FUNCTION called DrinkOrder that takes 2 parameters {Size} & {drink}
 function drinkOrder(size, drink){
