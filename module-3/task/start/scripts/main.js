@@ -165,13 +165,15 @@ let sum8 = calculator(1,1,'alex');
 
 let arrRainbow = ['red','yellow','pink','green','purple','orange','blue'];
 
-// console.log(arrRainbow);
-// console.log(arrRainbow.length);
+console.log(arrRainbow);
+console.log(arrRainbow.length);
 
 
-// console.log(arrRainbow[3]);
-// arrRainbow[3] = 'black';
-// console.log(arrRainbow[3]);
+console.log(arrRainbow[3]);
+arrRainbow[3] = 'black';
+console.log(arrRainbow[3]);
+
+// arrays can be represented on a line or as below, remember to tab out data in an array.
 
 let arrProductData = [
     productName,
@@ -179,13 +181,13 @@ let arrProductData = [
     productQuantity,
     productInStock,
     productDiscountAmount,
-];
+]; // array must be closed where it was opened, same with functions. 
 
 console.log(arrProductData);
 
 console.log(arrProductData[0]);
 
-// let lastArrayKey = arrProductData.length - 1;
+lastArrayKey = arrProductData.length - 1;
 
 console.log(arrProductData[4]);
 
@@ -195,19 +197,66 @@ let objProductData = {
     'quantity':productQuantity,
     'inStock':productInStock,
     'discountAmount':productDiscountAmount,
+    // alexExample3:function(){
+    //     console.log('testing');
+    // }
 };
 
-console.log(objProductData);
+console.log(objProductData.productName); // objects can be accessed using dot notation
+console.log(objProductData['productName']); // or objects can be accessed using bracket notation
 
-objProductData['productName'] = 'light bulbs';
+objProductData['productName'] = 'light bulbs'; // overwriting object data
 
 console.log(objProductData.productName);
 
-objProductData.alexExample1 = 'this is new data';
+objProductData.alexExample3 = 'this is new data'; // adding data to an object dot notation
 
-objProductData['alexExample2'] = 2;
+objProductData['alexExample2'] = 2; // adding data to an object bracket notation
 
 console.log(objProductData);
+//objProductData['alexExample3']();
+
+// objProductData.alexExample3;
+// objProductData['alexExample3'](); // I have no idea why this code doesn't work??? *********************
+
+
+for (i = 0; i <= 10; i++) {
+    console.log('The counter number is ' + i)
+}
+let variable1 = 10
+for (let counter = 0; counter < 10; counter++) { // counting down from 10 to 1
+    let sum = variable1 - counter;
+    console.log(sum);
+}
+
+for (let counter = 0; counter < arrRainbow.length; counter++) { // need to use array length when iterating through an array
+    let sum = arrRainbow.length - (counter + 1);
+    console.log(arrRainbow[sum]);
+}
+
+let myFavouriteSnacks = [ // declaring an array
+    'snickers',
+    'kitkat',
+    'twix',
+]
+    
+for (let i = 0; i < myFavouriteSnacks.length; i++) { // iterating through an array
+    console.log(myFavouriteSnacks[i]);
+}
+
+// *** FIZZ BUZZ ***
+
+for (let counter = 0; counter < 100; counter++) {
+    if(counter % 3 == 0 && counter % 5 == 0) {
+        console.log('Fizz');
+    } else if(counter % 5 == 0) {
+        console.log('Buzz');
+    } else if (counter % 3 == 0 ) {
+        console.log('Fizz Buzz');
+    } else {
+        console.log(counter);
+    }
+}
 
 function outputTimesTables(number){
     for(
@@ -225,7 +274,11 @@ for(multiplyer=1;multiplyer<=12;multiplyer++){
     outputTimesTables(multiplyer);
 }
 
+// November 25th Class - Thursday
+
 console.log(shoppingCart);
+
+
 
 function totalPriceOfShopping(shoppingCart) {
     // LOOP through each item of the array
