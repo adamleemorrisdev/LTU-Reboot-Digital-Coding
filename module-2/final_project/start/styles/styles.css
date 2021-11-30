@@ -47,10 +47,10 @@ aside {
 .imageContainer div {
     max-width:calc(25% - 20px);
     padding: 10px;
-    
 }
 .imageContainer div img {
     max-width: 100%;
+    box-shadow:  3px 3px 10px 0px black;
 }
 
 .imageScaler {
@@ -58,3 +58,8 @@ aside {
     width: auto;
     height: 100%;
 }
+
+.hide {
+    display: none;
+}
+

@@ -309,64 +309,145 @@ let objCoupon = {
     amount: 0.5,
 };
 
-function totalPriceOfShopping(shoppingCart,objCoupon=null) {
-    // LOOP through each item of the array
+// function totalPriceOfShopping(shoppingCart,objCoupon=null) {
+//     // LOOP through each item of the array
+//     let totalPrice = 0;
+//     for(arrayKey = 0; arrayKey < shoppingCart.length; arrayKey++) {
+//         let currentItem = shoppingCart[arrayKey]; // grabs current item in array
+//         // console.log(currentItem.price);
+//         // Get the price of the current item and times it by the quantity
+//         let currentItemPrice = currentItem.quantity * currentItem.price;
+//         // if there is a coupon apply a discount to the current item
+//         let discount = 0; // set amount to zero because this is inside loop and needs to be reset every loop
+//         // if objCoupon has been passed an argument and the type is not one that affects the total price
+//         if(objCoupon && objCoupon.type != 'basketTotal' && objCoupon.type != 'basketPercent') { 
+//             // if the current item type can be found in the array for types of items to be discounted
+//             if(objCoupon.types.includes(currentItem.type)){
+//                 switch(objCoupon.type){
+//                     case 'flatFee':
+//                         // work out the total discount based on amount times quantity
+//                         discount = objCoupon.amount * currentItem.quantity
+//                         // remove the discounted amount from the current item price
+//                         currentItemPrice = currentItemPrice - discount;
+//                         break;
+//                     case 'percentage':
+//                         // work out the percentage to be removed
+//                         discount = (currentItemPrice / 100) * objCoupon.amount;
+//                         // remove the discounted amount from the current item price
+//                         currentItemPrice = currentItemPrice - discount;
+//                         break;
+//                 }
+//             }
+//         }
+//         totalPrice += (currentItemPrice);
+//     }
+//     // return total price
+//     // if the coupon type is to affect the whole basket, 
+//     if(objCoupon && (objCoupon.type == 'basketTotal' || objCoupon.type == 'basketPercent')) {
+//         // switch statement for type of coupon 
+//         switch(objCoupon.type){
+//             case 'basketTotal':
+//                 totalPrice = totalPrice - objCoupon.amount;
+//                 break;
+//             case 'basketPercent':
+//                 discount = (totalPrice/ 100) * objCoupon.amount;
+//                 totalPrice = totalPrice - discount;
+//                 break;
+//         }
+//     }        
+//     return totalPrice.toFixed(2);
+
+// }
+
+// let objCoupon1 = {
+//     types:['toiletries', 'condiment'],
+//     type:'flatFee',
+//     amount:0.5,
+//  };
+
+// let objCoupon2 = {
+//     types:['canned', 'snacks'],
+//     type:'percentage',
+//     amount:30,
+// };
+
+// let objCoupon3 = {
+//     types:[''],
+//     type:'basketTotal',
+//     amount:25,
+// };
+
+// let objCoupon4 = {
+//     types:[''],
+//     type:'basketPercent',
+//     amount:40,
+// };
+
+// shoppingCartPrice = totalPriceOfShopping(shoppingCart);
+// console.log(shoppingCartPrice);
+// shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon1);
+// console.log(shoppingCartPrice);
+// shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon2);
+// console.log(shoppingCartPrice);
+// shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon3);
+// console.log(shoppingCartPrice);
+// shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon4);
+// console.log(shoppingCartPrice);
+
+function totalPriceOfShopping(shoppingCart,objCoupon=null){
+    //LOOP through each item of the array
     let totalPrice = 0;
-    for(arrayKey = 0; arrayKey < shoppingCart.length; arrayKey++) {
-        let currentItem = shoppingCart[arrayKey]; // grabs current item in array
-        // console.log(currentItem.price);
+    for(arrayKey=0; arrayKey < shoppingCart.length; arrayKey++){
+        let currentItem = shoppingCart[arrayKey];
+        // console.log(currentItem);
         // Get the price of the current item and times it by the quantity
         let currentItemPrice = currentItem.quantity * currentItem.price;
-        // if there is a coupon apply a discount to the current item
-        let discount = 0; // set amount to zero because this is inside loop and needs to be reset every loop
-        // if objCoupon has been passed an argument and the type is not one that affects the total price
-        if(objCoupon && objCoupon.type != 'basketTotal' && objCoupon.type != 'basketPercent') { 
-            // if the current item type can be found in the array for types of items to be discounted
-            if(objCoupon.types.includes(currentItem.type)){
-                switch(objCoupon.type){
-                    case 'flatFee':
-                        // work out the total discount based on amount times quantity
-                        discount = objCoupon.amount * currentItem.quantity
-                        // remove the discounted amount from the current item price
-                        currentItemPrice = currentItemPrice - discount;
-                        break;
-                    case 'percentage':
-                        // work out the percentage to be removed
-                        discount = (currentItemPrice / 100) * objCoupon.amount;
-                        // remove the discounted amount from the current item price
-                        currentItemPrice = currentItemPrice - discount;
-                        break;
-                }
-            }
+        //if there is a coupon apply a discount to the current item
+        let discount = 0;
+        //If objCoupon has been passed as an argument and the type is not one that affects the total price
+        if(objCoupon && objCoupon.type != 'basketTotal' && objCoupon.type != 'basketPercent'){
+            currentItemPrice = applyDiscount(objCoupon.type,objCoupon.amount,currentItemPrice);
         }
-        totalPrice += (currentItemPrice);
+        // console.log(currentItemPrice)
+        // Add the sum to the totalPrice
+        totalPrice += currentItemPrice;
     }
-    // return total price
-    // if the coupon type is to affect the whole basket, 
-    if(objCoupon && (objCoupon.type == 'basketTotal' || objCoupon.type == 'basketPercent')) {
-        // switch statement for type of coupon 
-        switch(objCoupon.type){
-            case 'basketTotal':
-                totalPrice = totalPrice - objCoupon.amount;
-                break;
-            case 'basketPercent':
-                discount = (totalPrice/ 100) * objCoupon.amount;
-                totalPrice = totalPrice - discount;
-                break;
-        }
-    }        
+    //if the coupon type is to affect the whole basket
+    if(objCoupon && (objCoupon.type == 'basketTotal' || objCoupon.type == 'basketPercent')){
+        totalPrice = applyDiscount(objCoupon.type,objCoupon.amount,totalPrice);
+    }
+    //Return total price
     return totalPrice.toFixed(2);
-
 }
 
+function applyDiscount(type,amount,value){
+    switch(type){
+        case 'basketTotal':
+        case 'flatFee':
+            //take the amount off the total price
+            value = value - amount;
+            break;
+        case 'basketPercent':
+        case 'percentage':
+            //work out the total percentage to be removed
+            let discount = (value / 100) * amount;
+            value = value - discount;
+            break;
+    }
+    return value;
+}
+
+//categories = array filled with values of potential shopping basket types
+//type = flatFee, percent, basketTotal, basketPercent
+//amount = the amount to be subtracted
 let objCoupon1 = {
-    types:['toiletries', 'condiment'],
+    types:['toiletries','condiment'],
     type:'flatFee',
     amount:0.5,
- };
+};
 
 let objCoupon2 = {
-    types:['canned', 'snacks'],
+    types:['canned','snacks'],
     type:'percentage',
     amount:30,
 };
@@ -383,16 +464,14 @@ let objCoupon4 = {
     amount:40,
 };
 
-shoppingCartPrice = totalPriceOfShopping(shoppingCart);
+let shoppingCartPrice = totalPriceOfShopping(shoppingCart);
 console.log(shoppingCartPrice);
-shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon1);
+shoppingCartPrice = totalPriceOfShopping(shoppingCart,objCoupon1);
 console.log(shoppingCartPrice);
-shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon2);
+shoppingCartPrice = totalPriceOfShopping(shoppingCart,objCoupon2);
 console.log(shoppingCartPrice);
-shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon3);
+shoppingCartPrice = totalPriceOfShopping(shoppingCart,objCoupon3);
 console.log(shoppingCartPrice);
-shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon4);
+shoppingCartPrice = totalPriceOfShopping(shoppingCart,objCoupon4);
 console.log(shoppingCartPrice);
-
-
  
