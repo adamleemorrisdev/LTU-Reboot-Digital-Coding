@@ -280,62 +280,89 @@ console.log(shoppingCart);
 
 
 
-function totalPriceOfShopping(shoppingCart) {
-    // LOOP through each item of the array
-    let totalPrice = 0;
-    for(arrayKey = 0; arrayKey < shoppingCart.length; arrayKey++) {
-        let currentItem = shoppingCart[arrayKey];
-        // GET the price of the current item and times it by the quantity
-        let currentItemPrice = currentItem.quantity * currentItem.price;
-        // ADD the sum to the totalPrice
-        totalPrice += parseFloat(currentItemPrice);
+// function totalPriceOfShopping(shoppingCart) {
+//     // LOOP through each item of the array
+//     let totalPrice = 0;
+//     for(arrayKey = 0; arrayKey < shoppingCart.length; arrayKey++) {
+//         let currentItem = shoppingCart[arrayKey];
+//         // GET the price of the current item and times it by the quantity
+//         let currentItemPrice = currentItem.quantity * currentItem.price;
+//         // ADD the sum to the totalPrice
+//         totalPrice += parseFloat(currentItemPrice);
 
-    }
-    // RETURN total price
-    return totalPrice.toFixed(2);
-}
+//     }
+//     // RETURN total price
+//     return totalPrice.toFixed(2);
+// }
+
 
 totalPriceOfShopping(shoppingCart);
 console.log(totalPriceOfShopping(shoppingCart));
+
+// categories = array filled with values of potential shopping basket types
+// type = flatFee, percent, basket 
+// amount = the amount to be subtracted
+
+let objCoupon = {
+    types:['toiletries','condiment'],
+    type:['flatFee'],
+    amount: 0.5,
+};
 
 function totalPriceOfShopping(shoppingCart,objCoupon=null) {
     // LOOP through each item of the array
     let totalPrice = 0;
     for(arrayKey = 0; arrayKey < shoppingCart.length; arrayKey++) {
-        let currentItem = shoppingCart[arrayKey];
-        // console.log(currentItem);
+        let currentItem = shoppingCart[arrayKey]; // grabs current item in array
+        // console.log(currentItem.price);
         // Get the price of the current item and times it by the quantity
-        let currentItemPrice = currentItem.quantity * currentItem.pric;
+        let currentItemPrice = currentItem.quantity * currentItem.price;
         // if there is a coupon apply a discount to the current item
-        let discount = 0;
-        // if objCoupon has been passed as an argument and the type is not one that affects the total price
-    if(objCoupon && objCoupon.type != 'basketTotal' && objCoupon.type != 'basketPercent') {
-        // if the current item type can be found in the array for types of items to be discounted
-        if(objCoupon.types.includes(currentItem.type)) {
-            // switch statement for type of coupon
-            switch(objCoupon.type) {
-                case 'flatFee':
-                    // work out the total discount based on amount times quantity
-                    discount = objCoupon.amount * currentItem.quantity 
-                    // remove the discounted amount ifrom the current item price
-                    currentItemPrice = currentItemPrice - discount;
-                    break;
-                case 'percentage':
-                    // work out the total percentage to be removed
-                    discount = (currentItemPrice / 100) * objCoupon.amount;
-                    // remove the discounted amount from the current item price
-                    currentItemPrice = currentItemPrice - discount;
-                    break;
+        let discount = 0; // set amount to zero because this is inside loop and needs to be reset every loop
+        // if objCoupon has been passed an argument and the type is not one that affects the total price
+        if(objCoupon && objCoupon.type != 'basketTotal' && objCoupon.type != 'basketPercent') { 
+            // if the current item type can be found in the array for types of items to be discounted
+            if(objCoupon.types.includes(currentItem.type)){
+                switch(objCoupon.type){
+                    case 'flatFee':
+                        // work out the total discount based on amount times quantity
+                        discount = objCoupon.amount * currentItem.quantity
+                        // remove the discounted amount from the current item price
+                        currentItemPrice = currentItemPrice - discount;
+                        break;
+                    case 'percentage':
+                        // work out the percentage to be removed
+                        discount = (currentItemPrice / 100) * objCoupon.amount;
+                        // remove the discounted amount from the current item price
+                        currentItemPrice = currentItemPrice - discount;
+                        break;
+                }
             }
         }
+        totalPrice += (currentItemPrice);
     }
-    }
+    // return total price
+    // if the coupon type is to affect the whole basket, 
+    if(objCoupon && (objCoupon.type == 'basketTotal' || objCoupon.type == 'basketPercent')) {
+        // switch statement for type of coupon 
+        switch(objCoupon.type){
+            case 'basketTotal':
+                totalPrice = totalPrice - objCoupon.amount;
+                break;
+            case 'basketPercent':
+                discount = (totalPrice/ 100) * objCoupon.amount;
+                totalPrice = totalPrice - discount;
+                break;
+        }
+    }        
+    return totalPrice.toFixed(2);
+
 }
 
 let objCoupon1 = {
     types:['toiletries', 'condiment'],
     type:'flatFee',
-    amount: 0.5,
+    amount:0.5,
  };
 
 let objCoupon2 = {
@@ -356,7 +383,7 @@ let objCoupon4 = {
     amount:40,
 };
 
-let shoppingCartPrice = totalPriceOfShopping(shoppingCart);
+shoppingCartPrice = totalPriceOfShopping(shoppingCart);
 console.log(shoppingCartPrice);
 shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon1);
 console.log(shoppingCartPrice);
@@ -366,3 +393,6 @@ shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon3);
 console.log(shoppingCartPrice);
 shoppingCartPrice = totalPriceOfShopping(shoppingCart, objCoupon4);
 console.log(shoppingCartPrice);
+
+
+ 
