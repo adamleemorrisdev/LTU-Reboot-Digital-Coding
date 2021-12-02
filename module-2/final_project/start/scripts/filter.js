@@ -14,7 +14,7 @@ buttons.forEach(function(button){
     button.addEventListener('click', function(event){
         // console.log(event.target);
         let clickedItem = event.target;
-        let animal = clickedItem.getAttribute('animal');
+        animal = clickedItem.getAttribute('animal');
         // console.log(animal);
         images.forEach(function(image){ // creating and using
             image.parentElement.classList.add('hide');
@@ -28,7 +28,7 @@ buttons.forEach(function(button){
 });
 
 textSearchInput.addEventListener('keyup',function(event){
-    let searchString = event.target.value;
+    searchString = event.target.value;
     console.log(searchString);
     images.forEach(function(image){
         let captionElement = image.parentElement;
@@ -44,3 +44,4 @@ textSearchInput.addEventListener('keyup',function(event){
     });
 });
 
+// Need to watch the recording again and find out what this code above is doing...feel like I'm missing some fundamental information about variables and functions that I need to learn because I'm quite confused by the code above.
